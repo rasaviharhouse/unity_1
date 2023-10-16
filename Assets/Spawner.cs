@@ -19,17 +19,15 @@ public class Spawner : MonoBehaviour
     public float maxSpawnInterval = 10f;
 
     public int minObjects = 2;
-    public int maxObjects = 5;
+    public int maxObjects = 10;
 
-    public float playerDetectionRadius = 1f;
-    public float objectLifetime = 10f;
+    public float playerDetectionRadius = 2f;
 
     public int currentObjects = 0;
 
     public List<Transform> availableSpawnPoints;
 
     public List<GameObject> spawnedObjects = new List<GameObject>();
-
 
     private bool timerDone = false;
 
@@ -38,23 +36,11 @@ public class Spawner : MonoBehaviour
     {
         // Initialize the set of available spawn points.
         availableSpawnPoints.AddRange(spawnPoints);
-        //StartCoroutine(countdown());
     }
 
     void Update()
     {
-
-        // Check and destroy objects that have exceeded their lifetime.
-        //for (int i = spawnedObjects.Count - 1; i >= 0; i--)
-        //{
-        //    ObjectTimer timer = spawnedObjects[i].GetComponent<ObjectTimer>();
-        //    if (timer != null && timer.TimerDone)
-        //    {
-        //        DestroyObject(i);
-        //    }
-        //}
-
-        if (currentObjects < minObjects || (currentObjects >= minObjects && currentObjects < maxObjects && timerDone))
+        if (currentObjects < minObjects)
         {
             SpawnRandomObject();
         }
@@ -72,8 +58,6 @@ public class Spawner : MonoBehaviour
 
         Transform randomSpawnPoint = availableSpawnPoints[randomIndex];
 
-        //Debug.Log(randomSpawnPoint);
-
         float distanceToPlayer = Vector3.Distance(randomSpawnPoint.position, player.transform.position);
         if (distanceToPlayer > playerDetectionRadius)
         {
@@ -87,25 +71,11 @@ public class Spawner : MonoBehaviour
 
             // Add the spawned object to the list and attach a timer to it.
             spawnedObjects.Add(spawnedObject);
-            timerDone = false;
-            StartCoroutine(countdown(spawnedObject, randomSpawnPoint));
-            //ObjectTimer timer = spawnedObject.AddComponent<ObjectTimer>();
-            //timer.StartTimer(objectLifetime);
-            if (timerDone)
-            {
-                StopCoroutine(countdown(spawnedObject, randomSpawnPoint));
-            }
-        }
-    }
 
-    void DestroyObject(int index)
-    {
-        Transform t = spawnedObjects[index].transform;
-        // Add the destroyed spawn point back to the available list.
-        Destroy(spawnedObjects[index]);
-        spawnedObjects.RemoveAt(index);
-        availableSpawnPoints.Add(t);
-        currentObjects--;
+            timerDone = false;
+
+            StartCoroutine(countdown(spawnedObject, randomSpawnPoint));
+        }
     }
 
     private IEnumerator countdown(GameObject spawnedObject, Transform randomSpawnPoint)
@@ -113,14 +83,28 @@ public class Spawner : MonoBehaviour
         while (!timerDone)
         {
             yield return new WaitForSeconds(Random.Range(minSpawnInterval, maxSpawnInterval)); //wait for 5-10 seconds
-            //spawnedObjects.RemoveAt(index);
-            Destroy(spawnedObject);
-            spawnedObjects.Remove(spawnedObject);
+            try
+            {
+                spawnedObjects.Remove(spawnedObject);
+                Destroy(spawnedObject);
+            }
+            catch
+            {
+                Debug.LogError("The problem is with SpawnedObjects list removal or object destruction");
+            }
+            
             currentObjects--;
 
             // Add the destroyed spawn point back to the available list.
             availableSpawnPoints.Add(randomSpawnPoint);
             timerDone = true;
+        }
+        yield return new WaitForSeconds(Random.Range(minSpawnInterval, maxSpawnInterval));
+        int num = Random.Range(0, maxObjects- minObjects);
+        while (num>0)
+        {
+            SpawnRandomObject();
+            num--;
         }
     }
 
