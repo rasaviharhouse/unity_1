@@ -41,13 +41,13 @@ public class PlayerMovement : MonoBehaviour
         // Along Z-Axis
         if (Input.GetKey(KeyCode.W))
         {
-            Debug.Log("Pressed W!");
+            //Debug.Log("Pressed W!");
             transform.Translate(new Vector3(0.0f, 0.0f, 2.0f * moveSpeed * Time.deltaTime));
 
         }
         if (Input.GetKey(KeyCode.S))
         {
-            Debug.Log("Pressed S!");
+            //Debug.Log("Pressed S!");
             transform.Translate(new Vector3(0.0f, 0.0f, -2.0f * moveSpeed * Time.deltaTime));
 
         }
@@ -55,20 +55,20 @@ public class PlayerMovement : MonoBehaviour
         // Along X-Axis
         if (Input.GetKey(KeyCode.A))
         {
-            Debug.Log("Pressed A!");
+            //Debug.Log("Pressed A!");
             transform.Translate(new Vector3(-2.0f * moveSpeed * Time.deltaTime, 0.0f, 0.0f));
 
         }
         if (Input.GetKey(KeyCode.D))
         {
-            Debug.Log("Pressed D!");
+            //Debug.Log("Pressed D!");
             transform.Translate(new Vector3(2.0f * moveSpeed * Time.deltaTime, 0.0f, 0.0f));
         }
 
         // Along Y-Axis
         if (Input.GetKey(KeyCode.Space))
         {
-            Debug.Log("Pressed Space!");
+            //Debug.Log("Pressed Space!");
             transform.Translate(new Vector3(0.0f, 10.0f * jumpForce * Time.deltaTime, 0.0f));
         }
     }

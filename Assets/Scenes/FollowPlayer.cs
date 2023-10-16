@@ -5,7 +5,7 @@ using UnityEngine;
 public class FollowPlayer : MonoBehaviour
 {
 
-    public Transform target; // Player's Transform
+    public GameObject target; // Player's Transform
 
     public float rotationSpeed = 5.0f;
 
@@ -17,7 +17,8 @@ public class FollowPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        //Debug.Log("Main Camera:" + this.gameObject);
+        //Debug.Log("Target:" + target);
     }
 
     // Update is called once per frame
@@ -55,7 +56,7 @@ public class FollowPlayer : MonoBehaviour
             offset.z = -4.0f;
         }
 
-        transform.position = target.position + offset;
+        transform.position = target.transform.position + offset;
 
         // Get mouse input
         mouseX += Input.GetAxis("Mouse X") * rotationSpeed;
@@ -66,7 +67,7 @@ public class FollowPlayer : MonoBehaviour
         transform.rotation = cameraRotation;
 
         // Rotate the player based on mouse input (optional)
-        target.rotation = Quaternion.Euler(0f, mouseX, 0f);
+        target.transform.rotation = Quaternion.Euler(0f, mouseX, 0f);
 
     }
 }
