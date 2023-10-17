@@ -48,7 +48,7 @@ public class Spawner : MonoBehaviour
 
     void SpawnRandomObject()
     {
-        if (availableSpawnPoints.Count == 0)
+        if (availableSpawnPoints.Count == 0 || player == null)
         {
             // No available spawn points, so we can't spawn anything right now.
             return;
@@ -98,7 +98,7 @@ public class Spawner : MonoBehaviour
     public void destroyObject(GameObject spawnedObject, Transform spawnPoint)
     {
         try
-        {   if(spawnedObject is not null)
+        {   if(spawnedObject != null)
             {
                 spawnedObjects.Remove(spawnedObject);
                 Destroy(spawnedObject);

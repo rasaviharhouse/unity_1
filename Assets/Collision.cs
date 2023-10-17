@@ -34,7 +34,9 @@ public class Collision : MonoBehaviour
             Debug.Log("Player found a health pack.");
             playerHealth = playerHealth <100 ? playerHealth + 20 : 100;
         }
+
         Destroy(other.gameObject);
+
         if(playerHealth == 0)
         {
             Destroy(this.gameObject);
