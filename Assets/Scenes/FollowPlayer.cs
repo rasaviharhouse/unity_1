@@ -56,18 +56,21 @@ public class FollowPlayer : MonoBehaviour
             offset.z = -4.0f;
         }
 
-        transform.position = target.transform.position + offset;
+        if(target is not null)
+        {
+            transform.position = target.transform.position + offset;
 
-        // Get mouse input
-        mouseX += Input.GetAxis("Mouse X") * rotationSpeed;
-        mouseY += Input.GetAxis("Mouse Y") * rotationSpeed;
+            // Get mouse input
+            mouseX += Input.GetAxis("Mouse X") * rotationSpeed;
+            mouseY += Input.GetAxis("Mouse Y") * rotationSpeed;
 
-        // Rotate the camera based on mouse input
-        Quaternion cameraRotation = Quaternion.Euler(0f, mouseX, 0f);
-        transform.rotation = cameraRotation;
+            // Rotate the camera based on mouse input
+            Quaternion cameraRotation = Quaternion.Euler(0f, mouseX, 0f);
+            transform.rotation = cameraRotation;
 
-        // Rotate the player based on mouse input (optional)
-        target.transform.rotation = Quaternion.Euler(0f, mouseX, 0f);
+            // Rotate the player based on mouse input (optional)
+            target.transform.rotation = Quaternion.Euler(0f, mouseX, 0f);
+        }
 
     }
 }

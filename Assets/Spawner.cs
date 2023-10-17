@@ -29,7 +29,7 @@ public class Spawner : MonoBehaviour
 
     public List<GameObject> spawnedObjects = new List<GameObject>();
 
-    private bool timerDone = false;
+    public bool timerDone = false;
 
 
     void Start()
@@ -83,20 +83,7 @@ public class Spawner : MonoBehaviour
         while (!timerDone)
         {
             yield return new WaitForSeconds(Random.Range(minSpawnInterval, maxSpawnInterval)); //wait for 5-10 seconds
-            try
-            {
-                spawnedObjects.Remove(spawnedObject);
-                Destroy(spawnedObject);
-            }
-            catch
-            {
-                Debug.LogError("The problem is with SpawnedObjects list removal or object destruction");
-            }
-            
-            currentObjects--;
-
-            // Add the destroyed spawn point back to the available list.
-            availableSpawnPoints.Add(randomSpawnPoint);
+            destroyObject(spawnedObject, randomSpawnPoint);
             timerDone = true;
         }
         yield return new WaitForSeconds(Random.Range(minSpawnInterval, maxSpawnInterval));
@@ -106,6 +93,29 @@ public class Spawner : MonoBehaviour
             SpawnRandomObject();
             num--;
         }
+    }
+
+    public void destroyObject(GameObject spawnedObject, Transform spawnPoint)
+    {
+        try
+        {   if(spawnedObject is not null)
+            {
+                spawnedObjects.Remove(spawnedObject);
+                Destroy(spawnedObject);
+            } else
+            {
+                spawnedObjects.Remove(null);
+            }
+        }
+        catch
+        {
+            Debug.LogError("The problem is with SpawnedObjects list removal or object destruction");
+        }
+
+        currentObjects--;
+
+        // Add the destroyed spawn point back to the available list.
+        availableSpawnPoints.Add(spawnPoint);
     }
 
 }
