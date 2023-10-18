@@ -41,24 +41,29 @@ public class FollowPlayer : MonoBehaviour
             return;
         }
 
-        offset = new Vector3(0.0f, 1.0f, 0.0f);
+        offset = new Vector3(0.0f, 2.0f, 0.0f);
 
-        if(transform.rotation.x >= 90 && transform.rotation.x <=270)
+        float y_angle = transform.rotation.eulerAngles.y;
+
+        if (y_angle >= 0 && y_angle < 90)
         {
-            offset.x = 4.0f;
+            offset.x = -5.0f;
+            offset.z = -5.0f;
+        }
+        else if (y_angle >= 90 && y_angle < 180)
+        {
+            offset.x = -5.0f;
+            offset.z = 5.0f;
+        }
+        else if (y_angle >= 180 && y_angle < 270)
+        {
+            offset.x = 5.0f;
+            offset.z = 5.0f;
         }
         else
         {
-            offset.x = -4.0f;
-        }
-
-        if (transform.rotation.z >= 90 && transform.rotation.z <= 270)
-        {
-            offset.z = 4.0f;
-        }
-        else
-        {
-            offset.z = -4.0f;
+            offset.x = 5.0f;
+            offset.z = -5.0f;
         }
 
         transform.position = target.transform.position + offset;
@@ -68,7 +73,7 @@ public class FollowPlayer : MonoBehaviour
         mouseY += Input.GetAxis("Mouse Y") * rotationSpeed;
 
         // Rotate the camera based on mouse input
-        Quaternion cameraRotation = Quaternion.Euler(0f, mouseX, 0f);
+        Quaternion cameraRotation = Quaternion.Euler(-mouseY, mouseX, 0f);
         transform.rotation = cameraRotation;
 
         // Rotate the player based on mouse input (optional)
