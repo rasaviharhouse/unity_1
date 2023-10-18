@@ -32,8 +32,6 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
 
-
-
     }
 
     private void FixedUpdate()

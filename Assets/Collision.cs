@@ -8,7 +8,9 @@ public class Collision : MonoBehaviour
     public int playerHealth;
     public int maxPlayerHealth = 5;
 
-    public HealthBar healthBar;
+    public HealthBar healthBar;    // Reference to the Health Bar
+
+    public Restart canvasRestart; // Reference to the Canvas Restart script
 
     // Start is called before the first frame update
     void Start()
@@ -20,7 +22,7 @@ public class Collision : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     void OnTriggerEnter(Collider other)
@@ -43,9 +45,10 @@ public class Collision : MonoBehaviour
 
         healthBar.setHealth(playerHealth);
 
-        if(playerHealth == 0)
+        if (playerHealth == 0)
         {
             Destroy(this.gameObject);
+            canvasRestart.ShowRestartMessage();
         }
     }
 }

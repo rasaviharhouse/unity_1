@@ -15,16 +15,22 @@ public class PlayerTransformText : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        position_x.text = "x position: " + player.position.x.ToString();
-        position_z.text = "z position: " + player.position.z.ToString();
-        rotation_y.text = "y rotation: " + player.rotation.eulerAngles.y.ToString();        
+        if (player != null)
+        {
+            position_x.text = "x position: " + player.position.x.ToString();
+            position_z.text = "z position: " + player.position.z.ToString();
+            rotation_y.text = "y rotation: " + player.rotation.eulerAngles.y.ToString();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        position_x.text = "x position: " + player.position.x.ToString();
-        position_z.text = "z position: " + player.position.z.ToString();
-        rotation_y.text = "y rotation: " + player.rotation.eulerAngles.y.ToString();
+        if (player != null)
+        {
+            position_x.text = "x position: " + player.position.x.ToString();
+            position_z.text = "z position: " + player.position.z.ToString();
+            rotation_y.text = "y rotation: " + player.rotation.eulerAngles.y.ToString();
+        }
     }
 }

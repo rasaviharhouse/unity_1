@@ -12,15 +12,16 @@ public class HealthBar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
-    public void setMaxHealth(int health) {
+    public void setMaxHealth(int health)
+    {
         slider.maxValue = health;
         slider.value = health;
         fill.color = gradient.Evaluate(1f);

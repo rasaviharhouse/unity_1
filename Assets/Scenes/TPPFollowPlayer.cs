@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FollowPlayer : MonoBehaviour
+public class TPPFollowPlayer : MonoBehaviour
 {
 
     public GameObject target; // Player's Transform
@@ -17,8 +17,7 @@ public class FollowPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //Debug.Log("Main Camera:" + this.gameObject);
-        //Debug.Log("Target:" + target);
+
     }
 
     // Update is called once per frame
@@ -36,7 +35,7 @@ public class FollowPlayer : MonoBehaviour
     private void FixedUpdate()
     {
 
-        if(target == null)
+        if (target == null)
         {
             return;
         }

@@ -87,8 +87,8 @@ public class Spawner : MonoBehaviour
             timerDone = true;
         }
         yield return new WaitForSeconds(Random.Range(minSpawnInterval, maxSpawnInterval));
-        int num = Random.Range(0, maxObjects- currentObjects);
-        while (num>0)
+        int num = Random.Range(0, maxObjects - currentObjects);
+        while (num > 0)
         {
             SpawnRandomObject();
             num--;
@@ -98,11 +98,13 @@ public class Spawner : MonoBehaviour
     public void destroyObject(GameObject spawnedObject, Transform spawnPoint)
     {
         try
-        {   if(spawnedObject != null)
+        {
+            if (spawnedObject != null)
             {
                 spawnedObjects.Remove(spawnedObject);
                 Destroy(spawnedObject);
-            } else
+            }
+            else
             {
                 spawnedObjects.Remove(null);
             }
