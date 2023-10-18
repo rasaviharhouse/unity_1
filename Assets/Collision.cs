@@ -5,12 +5,16 @@ using UnityEngine;
 public class Collision : MonoBehaviour
 {
 
-    public int playerHealth = 100;
+    public int playerHealth;
+    public int maxPlayerHealth = 5;
+
+    public HealthBar healthBar;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        playerHealth = maxPlayerHealth;
+        healthBar.setMaxHealth(maxPlayerHealth);
     }
 
     // Update is called once per frame
@@ -25,17 +29,19 @@ public class Collision : MonoBehaviour
         {
             // Player entered the trigger zone of this object.
             Debug.Log("Player hit a hazard.");
-            playerHealth = playerHealth > 0 ? playerHealth - 20 : 0;
+            playerHealth = playerHealth > 0 ? playerHealth - 1 : 0;
         }
 
         else if (other.CompareTag("Health"))
         {
             // Handle health pack behavior.
             Debug.Log("Player found a health pack.");
-            playerHealth = playerHealth <100 ? playerHealth + 20 : 100;
+            playerHealth = playerHealth < maxPlayerHealth ? playerHealth + 1 : maxPlayerHealth;
         }
 
         Destroy(other.gameObject);
+
+        healthBar.setHealth(playerHealth);
 
         if(playerHealth == 0)
         {

@@ -87,7 +87,7 @@ public class Spawner : MonoBehaviour
             timerDone = true;
         }
         yield return new WaitForSeconds(Random.Range(minSpawnInterval, maxSpawnInterval));
-        int num = Random.Range(0, maxObjects- minObjects);
+        int num = Random.Range(0, maxObjects- currentObjects);
         while (num>0)
         {
             SpawnRandomObject();
