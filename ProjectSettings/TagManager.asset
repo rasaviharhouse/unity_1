@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Hazard
   - Health
+  - Book
+  - Dagger
+  - Jewel
   layers:
   - Default
   - TransparentFX
