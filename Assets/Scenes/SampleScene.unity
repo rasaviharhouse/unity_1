@@ -1924,11 +1924,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 437875029}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37b628301fccdb34fa33f4c0eb01b7b6, type: 3}
+  m_Script: {fileID: 11500000, guid: 5e6d2c6007da94e6f812728667a15fb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 927835888}
   characterName: {fileID: 1825497819}
+  index: 0
   buttons:
   - {fileID: 1777970959}
   - {fileID: 971860389}
@@ -2429,9 +2430,6 @@ MonoBehaviour:
   dialogueNodes:
   - text: Beep Boop
     name: R2D2
-    responses:
-    - 
-    responseIDs: 01000000
     ID: 0
 --- !u!1 &609213208
 GameObject:
@@ -3470,6 +3468,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentCapacity: 0
   totalCapacity: 5
+  bookStatus: 0
 --- !u!1001 &774257731
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3535,9 +3534,13 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: 6c1e8ff7bffa2463fafcd3d346c9ee39, type: 2}
     - target: {fileID: -8274188437143063217, guid: c2a666e220eec46d99a91b94f72d877a, type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6c1e8ff7bffa2463fafcd3d346c9ee39, type: 2}
+    - target: {fileID: -8274188437143063217, guid: c2a666e220eec46d99a91b94f72d877a, type: 3}
       propertyPath: m_Materials.Array.data[3]
       value: 
-      objectReference: {fileID: 2100000, guid: 4876d45a09f284b828ec560fdcc07860, type: 2}
+      objectReference: {fileID: 2100000, guid: 6c1e8ff7bffa2463fafcd3d346c9ee39, type: 2}
     - target: {fileID: -8274188437143063217, guid: c2a666e220eec46d99a91b94f72d877a, type: 3}
       propertyPath: m_Materials.Array.data[4]
       value: 
@@ -3609,6 +3612,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c2a666e220eec46d99a91b94f72d877a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1813257653}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c2a666e220eec46d99a91b94f72d877a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1813257654}
   m_SourcePrefab: {fileID: 100100000, guid: c2a666e220eec46d99a91b94f72d877a, type: 3}
 --- !u!1 &804968430
 GameObject:
@@ -7160,6 +7166,47 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 99.360306, y: 106.77145, z: 77.092186}
   m_Center: {x: 0, y: 50, z: 0}
+--- !u!114 &1813257654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1813257651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6c0a05b11e8b4ba7bbb8169adf12a33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueManager: {fileID: 437875029}
+  inventoryRoot: {fileID: 772237940}
+  dialogueNodesSet1:
+  - text: Hmm... You do have the book of mysteries, I see.
+    name: Yoda
+    ID: 0
+  - text: Yes, Master Yoda.
+    name: Luke Skywalker
+    ID: 1
+  - text: To me, you will give it.
+    name: Yoda
+    ID: 2
+  - text: Here it is, Master Yoda.
+    name: Luke Skywalker
+    ID: 3
+  - text: 'Thank you, Luke! '
+    name: Yoda
+    ID: 4
+  dialogueNodesSet2:
+  - text: Have the book, Do you? Luke?
+    name: Yoda
+    ID: 0
+  - text: No Master Yoda, I don't have the book of mysteries.
+    name: Luke Skywalker
+    ID: 1
+  - text: Use the force, Luke! On top of the houses, it is. May the force be with
+      you!
+    name: Yoda
+    ID: 2
 --- !u!1 &1825497817
 GameObject:
   m_ObjectHideFlags: 0
@@ -7194,8 +7241,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -459.5141, y: 57.735}
-  m_SizeDelta: {x: 159.9116, y: 32.082}
+  m_AnchoredPosition: {x: -335.81, y: 54.658}
+  m_SizeDelta: {x: 407.3197, y: 38.237}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1825497819
 MonoBehaviour:
@@ -7712,8 +7759,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 0}
   characterName: {fileID: 0}
+  dialogueBoxPanel: {fileID: 0}
   buttons: []
   nodes: []
+  index: 0
+  prevButton: {fileID: 0}
+  nextButton: {fileID: 0}
 --- !u!1 &1997952328
 GameObject:
   m_ObjectHideFlags: 0

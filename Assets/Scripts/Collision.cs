@@ -78,12 +78,12 @@ public class Collision : MonoBehaviour
         }
         else if (other.CompareTag("R2D2"))
         {
-            Debug.Log("Player met R2D2");
+            Debug.Log("Luke met R2D2");
             message = "R2D2";
         }
         else if (other.CompareTag("Yoda"))
         {
-            Debug.Log("Player met Master Yoda");
+            Debug.Log("Luke met Master Yoda");
             message = "Yoda";
         }
 

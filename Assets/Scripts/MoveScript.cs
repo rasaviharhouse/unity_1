@@ -45,7 +45,6 @@ public class MoveScript : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("R2D2");
         dialogueManager.GetComponent<Conversation>().setNodes(dialogueNodes);
         dialogueManager.GetComponent<Conversation>().setIndex(0);
         dialogueManager.GetComponent<Conversation>().showDialogue();

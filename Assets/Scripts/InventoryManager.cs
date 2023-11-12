@@ -14,7 +14,7 @@ public class InventoryManager : MonoBehaviour
 
     private const string ADDED_ITEM_SUCCESS = "Added";
 
-    bool bookStatus = false;
+    public bool bookStatus = false;
 
     //void Awake() {
     //    if(inventoryInstance == null) {

@@ -14,14 +14,14 @@ public class Conversation : MonoBehaviour
 
     private Transform dialogueBoxPanel;
 
+    public int index = 0;
+
     public List<TextMeshProUGUI> buttons;
 
     public List<DialogueNode> nodes;
 
 
-
-    private int index;
-
+    
     private Button prevButton;
     private Button nextButton;
 
@@ -33,6 +33,9 @@ public class Conversation : MonoBehaviour
         gameObject.SetActive(false);
         prevButton = buttons[0].GetComponent<Button>();
         nextButton = buttons[1].GetComponent<Button>();
+
+        nextButton.onClick.AddListener(showNextDialogue);
+        prevButton.onClick.AddListener(showPrevDialogue);
     }
 
     public void setIndex(int startIndex)
@@ -68,11 +71,10 @@ public class Conversation : MonoBehaviour
     //    }
     //}
 
-    public void Update()
-    {
-        nextButton.onClick.AddListener(showNextDialogue);
-        prevButton.onClick.AddListener(showPrevDialogue);
-    }
+    //public void Awake()
+    //{
+
+    //}
 
     public void showPrevDialogue()
     {
@@ -88,6 +90,9 @@ public class Conversation : MonoBehaviour
 
     public void showDialogue()
     {
+        buttons[0].text = index == 0 ? string.Empty : "<< Prev";
+        buttons[1].text = index == nodes.Count-1 ? "Finish" : "Next >>";
+
         if (index>=0 && index < nodes.Count)
         {
             //dialogueBoxPanel.gameObject.SetActive(true);
