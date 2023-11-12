@@ -9,6 +9,8 @@ TagManager:
   - Book
   - Dagger
   - Jewel
+  - R2D2
+  - Yoda
   layers:
   - Default
   - TransparentFX
