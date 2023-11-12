@@ -59,20 +59,20 @@ public class Conversation : MonoBehaviour
     //    showNextDialogue();
     //}
 
+    //public void Update()
+    //{
+    //    if (Input.GetMouseButtonDown(0))
+    //    {
+    //        index++;
+    //        showDialogue();
+    //    }
+    //}
+
     public void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            index++;
-            showDialogue();
-        }
+        nextButton.onClick.AddListener(showNextDialogue);
+        prevButton.onClick.AddListener(showPrevDialogue);
     }
-
-    //public void Awake()
-    //{
-    //    nextButton.onClick.AddListener(showNextDialogue);
-    //    prevButton.onClick.AddListener(showPrevDialogue);
-    //}
 
     public void showPrevDialogue()
     {
