@@ -9,16 +9,17 @@ public class MoveScript : MonoBehaviour
 
     private bool movingRight = true;
 
-    //public DialogueTrigger dialogueTrigger;
+    [SerializeField]
+    public GameObject dialogueManager;
 
-    //[SerializeField]
-    //public GameObject dialogueManager;
+    //private Conversation conversation;
 
-    public Conversation conversation;
+    public List<DialogueNode> dialogueNodes;
 
     public void Start()
     {
-        conversation = GameObject.Find("DialogueManager").GetComponent<Conversation>();
+        //conversation = GameObject.Find("DialogueManager").GetComponent<Conversation>();
+        //conversation = dialogueManager.GetComponent<Conversation>();
     }
 
     void Update()
@@ -35,7 +36,7 @@ public class MoveScript : MonoBehaviour
         else
         {
             transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
-            if (transform.position.x <= 6.0f)
+            if (transform.position.x <= 10.0f)
             {
                 movingRight = true;
             }
@@ -45,8 +46,9 @@ public class MoveScript : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         Debug.Log("R2D2");
-        //conversation.gameObject.SetActive(true);
-        conversation.showNextDialogue();
+        dialogueManager.GetComponent<Conversation>().setNodes(dialogueNodes);
+        dialogueManager.GetComponent<Conversation>().setIndex(0);
+        dialogueManager.GetComponent<Conversation>().showDialogue();
     }
 
 }

@@ -1929,13 +1929,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 927835888}
   characterName: {fileID: 1825497819}
-  buttons: []
-  nodes:
-  - text: Beep Boop
-    name: R2D2
-    responses: []
-    responseIDs: 
-    ID: 0
+  buttons:
+  - {fileID: 1777970959}
+  - {fileID: 971860389}
+  nodes: []
 --- !u!1 &455140578
 GameObject:
   m_ObjectHideFlags: 0
@@ -2428,7 +2425,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   maxTranslationX: 27
-  conversation: {fileID: 437875031}
+  dialogueManager: {fileID: 437875029}
+  dialogueNodes:
+  - text: Beep Boop
+    name: R2D2
+    responses:
+    - 
+    responseIDs: 01000000
+    ID: 0
 --- !u!1 &609213208
 GameObject:
   m_ObjectHideFlags: 0

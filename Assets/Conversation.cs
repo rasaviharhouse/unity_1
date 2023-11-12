@@ -2,68 +2,113 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Conversation : MonoBehaviour
 {
     [SerializeField]
     private TextMeshProUGUI text;
+
     [SerializeField]
     private TextMeshProUGUI characterName;
-    [SerializeField]
-    private List<TextMeshProUGUI> buttons;
-    [SerializeField]
-    private List<DialogueNode> nodes;
 
-    private GameObject dialogueBoxPanel;
+    private Transform dialogueBoxPanel;
+
+    public List<TextMeshProUGUI> buttons;
+
+    public List<DialogueNode> nodes;
+
+
 
     private int index;
-    
+
+    private Button prevButton;
+    private Button nextButton;
+
     public void Start()
     {
         index = 0;
-        dialogueBoxPanel = GameObject.Find("DialogueBoxPanel");
-        dialogueBoxPanel.SetActive(false);
+        //dialogueBoxPanel = transform.Find("DialogueBoxPanel");
+        //dialogueBoxPanel.gameObject.SetActive(false);
+        gameObject.SetActive(false);
+        prevButton = buttons[0].GetComponent<Button>();
+        nextButton = buttons[1].GetComponent<Button>();
     }
 
-    public void reponseClicked(int responseIndex)
+    public void setIndex(int startIndex)
     {
-        int responseToFind = nodes[index].responseIDs[responseIndex];
-        foreach(DialogueNode node in nodes)
-        {
-            if(node.ID == responseToFind)
-            {
-                index = nodes.IndexOf(node);
-                break;
-            }
-        }
-        showNextDialogue();
+        index = startIndex;
     }
+
+    public void setNodes(List<DialogueNode> nodeList)
+    {
+        nodes = nodeList;
+    }
+
+    //public void reponseClicked(int responseIndex)
+    //{
+    //    int responseToFind = nodes[index].responseIDs[responseIndex];
+    //    foreach(DialogueNode node in nodes)
+    //    {
+    //        if(node.ID == responseToFind)
+    //        {
+    //            index = nodes.IndexOf(node);
+    //            break;
+    //        }
+    //    }
+    //    showNextDialogue();
+    //}
 
     public void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            showNextDialogue();
+            index++;
+            showDialogue();
         }
+    }
+
+    //public void Awake()
+    //{
+    //    nextButton.onClick.AddListener(showNextDialogue);
+    //    prevButton.onClick.AddListener(showPrevDialogue);
+    //}
+
+    public void showPrevDialogue()
+    {
+        index--;
+        showDialogue();
     }
 
     public void showNextDialogue()
     {
-        if (index < nodes.Count)
+        index++;
+        showDialogue();
+    }
+
+    public void showDialogue()
+    {
+        if (index>=0 && index < nodes.Count)
         {
-            dialogueBoxPanel.SetActive(true);
+            //dialogueBoxPanel.gameObject.SetActive(true);
+            gameObject.SetActive(true);
             text.text = string.Empty;
+
             characterName.text = nodes[index].name + ":";
+
             StartCoroutine(slowPrintText(0.1f));
-            int responseIndex = 0;
-            foreach (string response in nodes[index].responses)
-            {
-                buttons[responseIndex++].text = response;
-            }
+            //int responseIndex = 0;
+            //foreach (string response in nodes[index].responses)
+            //{
+            //    buttons[responseIndex++].text = response;
+            //}
         }
         else
         {
-            dialogueBoxPanel.SetActive(false);
+            //dialogueBoxPanel = transform.Find("DialogueBoxPanel").gameObject;
+            //index = -1;
+            //dialogueBoxPanel.gameObject.SetActive(false);
+            gameObject.SetActive(false);
         }
     }
 
