@@ -1,11 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Make this class as a Singleton
 public class InventoryManager : MonoBehaviour
 {
-
-    //public static InventoryManager inventoryInstance;
 
     public float currentCapacity = 0;
     public float totalCapacity = 5;
@@ -15,13 +12,6 @@ public class InventoryManager : MonoBehaviour
     private const string ADDED_ITEM_SUCCESS = "Added";
 
     public bool bookStatus = false;
-
-    //void Awake() {
-    //    if(inventoryInstance == null) {
-    //        inventoryInstance = new InventoryManager();
-    //    }
-    //    inventoryInstance = this;
-    //}
 
     public string addItemToInventory(Item item)
     {

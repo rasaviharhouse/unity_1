@@ -34,6 +34,7 @@ public class YodaScript : MonoBehaviour
     {
         if(inventoryManager.bookStatus)
         {
+            InventorySpace.metYoda = true;
             dialogueManager.GetComponent<Conversation>().setNodes(dialogueNodesSet1);
         } else
         {

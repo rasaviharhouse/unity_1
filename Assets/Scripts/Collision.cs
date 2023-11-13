@@ -16,16 +16,12 @@ public class Collision : MonoBehaviour
     [SerializeField]
     public InventoryHUDManager inventory;
 
-    [SerializeField]
     public Item HealthItem;
 
-    [SerializeField]
     public Item BookItem;
 
-    [SerializeField]
     public Item JewelItem;
 
-    [SerializeField]
     public Item DaggerItem;
 
     // Start is called before the first frame update

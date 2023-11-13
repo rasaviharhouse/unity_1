@@ -5,21 +5,18 @@ using UnityEngine;
 public class MoveScript : MonoBehaviour
 {
     public float moveSpeed = 5.0f; // Adjust the speed as needed
-    public float maxTranslationX = 40.0f; // Maximum distance to move on the X-axis
+    public float maxTranslationX = 27.0f; // Maximum distance to move on the X-axis
 
     private bool movingRight = true;
 
     [SerializeField]
     public GameObject dialogueManager;
 
-    //private Conversation conversation;
-
     public List<DialogueNode> dialogueNodes;
 
     public void Start()
     {
-        //conversation = GameObject.Find("DialogueManager").GetComponent<Conversation>();
-        //conversation = dialogueManager.GetComponent<Conversation>();
+
     }
 
     void Update()

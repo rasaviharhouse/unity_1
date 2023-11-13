@@ -18,6 +18,8 @@ public class InventorySpace : MonoBehaviour
 
     private string slotIndex;
 
+    public static bool metYoda = false;
+
 
     // The below 2 variables are to just store the image and text of the Item.
     public TextMeshProUGUI text;
@@ -48,7 +50,7 @@ public class InventorySpace : MonoBehaviour
     // Call this method when user clicks on an item to remove it from inventory
     public void clearItem()
     {
-        if(text.text.Equals("The Book of Mysteries") || text.text.Equals("Empty"))
+        if ((text.text.Equals("The Book of Mysteries") && !metYoda) || text.text.Equals("Empty"))
         {
             return;
         }
